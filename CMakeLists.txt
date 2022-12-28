@@ -1,12 +1,14 @@
 cmake_minimum_required(VERSION 3.25)
-project(Module_37)
+project(Task_1)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-set(CMAKE_PREFIX_PATH "D:/Qt/5.15.2/mingw81_64/lib/cmake")
+if(WIN32)
+    set(CMAKE_PREFIX_PATH "D:/Qt/5.15.2/mingw81_64/lib/cmake")
+endif()
 
 find_package(Qt5 COMPONENTS
         Core
@@ -14,8 +16,16 @@ find_package(Qt5 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(Module_37 main.cpp)
-target_link_libraries(Module_37
+
+set(set(MY_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include))
+
+add_executable(${PROJECT_NAME} src/main.cpp
+        src/calculator.ui)
+
+
+
+
+target_link_libraries(Task_1
         Qt5::Core
         Qt5::Gui
         Qt5::Widgets
@@ -23,9 +33,9 @@ target_link_libraries(Module_37
 
 if (WIN32)
     set(DEBUG_SUFFIX)
-    #[[if (MSVC AND CMAKE_BUILD_TYPE MATCHES "Debug")
+    if (MSVC AND CMAKE_BUILD_TYPE MATCHES "Debug")
         set(DEBUG_SUFFIX "d")
-    endif ()]]
+    endif ()
     set(QT_INSTALL_PATH "${CMAKE_PREFIX_PATH}")
     if (NOT EXISTS "${QT_INSTALL_PATH}/bin")
         set(QT_INSTALL_PATH "${QT_INSTALL_PATH}/..")
@@ -49,3 +59,4 @@ if (WIN32)
                 "$<TARGET_FILE_DIR:${PROJECT_NAME}>")
     endforeach (QT_LIB)
 endif ()
+
