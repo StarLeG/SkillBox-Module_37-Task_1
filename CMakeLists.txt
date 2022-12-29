@@ -21,7 +21,8 @@ find_package(Qt5 COMPONENTS
 
 add_executable(${PROJECT_NAME} src/main.cpp
         src/calculator.ui
-        src/include/calcMainWindow.h src/calcMainWindow.cpp)
+        src/calcMainWindow.cpp
+        src/include/calcMainWindow.h)
 
 
 
